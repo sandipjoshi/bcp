@@ -1,5 +1,5 @@
 <?php
-include ('oph/php-image-magician/php_image_magician.php');
+include ('oph/php_image_magician.php');
 include "oph/FaceDetector.php";
 $fileName = $_FILES['afile']['name'];
 $fileType = $_FILES['afile']['type'];
@@ -24,7 +24,7 @@ $magicianObj -> resizeImage(125, 150, 'exact');
 $magicianObj -> saveImage($crpHOFname);
 
 
-$output = shell_exec('/usr/bin/python2.7 /opt/lampp/htdocs/tal_netra/pyfaces /opt/lampp/htdocs/oph/' . $crpHOFname . ' /opt/lampp/htdocs/oph/HOFPNG 15 3');
+$output = shell_exec('/usr/bin/python2.7 /var/www/bcp/tal_netra/pyfaces /var/www/bcp/oph/' . $crpHOFname . ' /var/www/bcp/oph/HOFPNG 15 3');
 echo "<pre>$output</pre>";
 $arr = explode(' :', $output, 30);
 $matchfile=explode(" ", $arr[1]);
