@@ -2,7 +2,7 @@
 $self = array();
 $time = 0;
 $dataobj;
-$hostname = 'devkeymydb.cbva4wkrumxh.ap-southeast-1.rds.amazonaws.com';
+$hostname = 'talashstore.cs3lfmjihdnd.ap-south-1.rds.amazonaws.com';
 $username = 'root';
 $password = 'devkey123';
 $missingdata = [];

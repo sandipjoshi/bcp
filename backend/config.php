@@ -1,5 +1,5 @@
 <?php
-$hostname = 'devkeymydb.cbva4wkrumxh.ap-southeast-1.rds.amazonaws.com';
+$hostname = 'talashstore.cs3lfmjihdnd.ap-south-1.rds.amazonaws.com';
 $username = 'root';
 $password = 'devkey123';
 $mysqli = mysqli_connect($hostname, $username, $password, "talash_db");
