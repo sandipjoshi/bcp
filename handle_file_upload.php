@@ -25,11 +25,11 @@ $magicianObj -> saveImage($crpHOFname);
 
 
 $output = shell_exec('/usr/bin/python2.7 /var/www/bcp/tal_netra/pyfaces /var/www/bcp/oph/' . $crpHOFname . ' /var/www/bcp/oph/HOFPNG 15 3');
-echo "<pre>$output</pre>";
+//echo "<pre>$output</pre>";
 $arr = explode(' :', $output, 30);
 $matchfile=explode(" ", $arr[1]);
 $found= explode("oph/", $matchfile[0]);
-
+/*
 echo "Query Image"."<img src=".$crpHOFname." ><br/>";
 
 echo "match Found with name"."$found[1]";
@@ -38,6 +38,7 @@ echo "<img src=".$found[1].">";
 echo "Processing time:"."<pre>$arr[2]</pre>";
 echo $crpHOFname."<br/>";
 echo $movehofpng;
+*/
 copy($crpHOFname, $movehofpng);
 
 
