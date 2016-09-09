@@ -23,7 +23,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-CURLOPT_URL => "http://talash.online/service/getmissingbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
+CURLOPT_URL => "http://localhost/bcp/service/getmissingbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
 CURLOPT_RETURNTRANSFER => true,
 CURLOPT_ENCODING => "",
 CURLOPT_MAXREDIRS => 10,
@@ -90,8 +90,8 @@ for($g=0;$g<4;$g++){
 				var lastres = true;
 				// Each time the user scrolls
 				win.scroll(function() {
-					//console.log($(document).height() >= Number($(window).scrollTop() + $(window).height()));
-					//console.log($(document).height() <= Number($(window).scrollTop() + $(window).height()));
+					console.log($(document).height() >= Number($(window).scrollTop() + $(window).height()));
+					console.log($(document).height() <= Number($(window).scrollTop() + $(window).height()));
 					console.log($(document).height() == Number($(window).scrollTop() + $(window).height()));
 					
 					if ($(document).height() == Number($(window).scrollTop() + $(window).height())) {
@@ -114,13 +114,14 @@ for($g=0;$g<4;$g++){
 							}
 						});
 
-						xhr.open("GET", "http://talash.online/service/printmissbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count="+sencount+"");
+						xhr.open("GET", "http://localhost/bcp/service/printmissbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count="+sencount+"");
 						xhr.setRequestHeader("cache-control", "no-cache");
 xhr.setRequestHeader("postman-token", "3923f6dd-5072-79cd-fcd9-7f1353ccd320");
 						xhr.send(data);
 						sencount = sencount + 1; }
 					else {  } 
-				
+
+				
 				});
 
 			});

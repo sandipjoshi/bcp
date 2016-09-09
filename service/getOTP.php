@@ -1,3 +1,4 @@
+<script src="../js/jquery-1.11.3.min.js" type="text/javascript" ></script>
 <?php
 include "../backend/config.php";
 $key=$_GET['key'];
@@ -25,7 +26,21 @@ if (empty($count)) {
 	//echo $otp;
 	echo json_encode("OTP=".$otp);
 	
-	
+   ?>
+<script>
+    var mobno = "<?php echo $mobile_no; ?>";
+    var otp = "<?php echo $otp; ?>";
+   $.ajax({     Origin: "http://silverlightinfosys.com",
+                type: "POST",
+                url: "http://mysms.silverlightinfosys.com/submitsms.jsp?user=devkey&key=212442b789XX&mobile=+91"+mobno+"&message=Your OTP for  Talash.Online is "+otp+"&senderid=INFOSM&accusage=1",
+                success: function(result) {
+                }
+
+            });
+
+</script>
+
+<?php	
 
 } else {
 	$string = '0123456789';
@@ -34,6 +49,7 @@ if (empty($count)) {
 	//echo $otp;
 	//echo json_encode($otp);
 	echo json_encode($count['id']);
+    
 }
 }
 ?>

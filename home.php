@@ -21,7 +21,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-CURLOPT_URL => "http://localhost/service/getmissingbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
+CURLOPT_URL => "http://localhost/bcp/service/getmissingbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
 CURLOPT_RETURNTRANSFER => true,
 CURLOPT_ENCODING => "",
 CURLOPT_MAXREDIRS => 10,
@@ -208,7 +208,7 @@ document.getElementById('next').setAttribute('onclick','login('+resp+')');
 }
 });
 
-xhr.open("GET", "http://localhost/service/getOTP.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&mobno=" + mno);
+xhr.open("GET", "http://localhost/bcp/service/getOTP.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&mobno=" + mno);
 xhr.setRequestHeader("mob_no", "9723011190");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.setRequestHeader("postman-token", "f12f823a-56c1-d401-d81f-8c9a239f5626");
@@ -244,7 +244,7 @@ xhr.addEventListener("readystatechange", function () {
   }
 });
 
-xhr.open("GET", "http://localhost/service/login.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&uid="+str+"&pwd="+pwd+"");
+xhr.open("GET", "http://localhost/bcp/service/login.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&uid="+str+"&pwd="+pwd+"");
 xhr.setRequestHeader("mob_no", "9723011190");
 xhr.setRequestHeader("cache-control", "no-cache");
 xhr.setRequestHeader("postman-token", "369122c7-6240-0a7c-59bf-ee02055335a3");
@@ -298,7 +298,7 @@ else{
 						</ul>
 						<div class="copy-right">
 							<p>
-								<small>copy right &copy; 2016 talash.online All Right Reserved | Developed By <a href="http://www.jupsys.com/" target="_blank"> Jupsys Infotech</a></small>
+								<small>copy right &copy; 2016 talash.online All Right Reserved | Developed By <a href="#/" target="_blank"> DEVKEY Innovation Lab</a></small>
 							</p>
 						</div>
 					</div>

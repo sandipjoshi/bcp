@@ -22,7 +22,7 @@
 <?php
 $curl = curl_init();
 curl_setopt_array($curl, array(
-			CURLOPT_URL => "http://talash.online/service/getmissingbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
+			CURLOPT_URL => "http://localhost/bcp/service/getmissingbg.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_ENCODING => "",
 			CURLOPT_MAXREDIRS => 10,
@@ -209,7 +209,7 @@ for($i=0;$i<6;$i++){
 				$curl = curl_init();
 				
 				curl_setopt_array($curl, array(
-							CURLOPT_URL => "http://talash.online/service/getmissingrow.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
+							CURLOPT_URL => "http://localhost/bcp/service/getmissingrow.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=0",
 							CURLOPT_RETURNTRANSFER => true,
 							CURLOPT_ENCODING => "",
 							CURLOPT_MAXREDIRS => 10,
@@ -520,7 +520,7 @@ for($c=1;$c<11;$c++){
 								}
 								});
 						
-							xhr.open("GET", "http://talash.online/service/printmissrow.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=" + sencount + "");
+							xhr.open("GET", "http://localhost/bcp/service/printmissrow.php?key=iZ23U35Gx9I8987x09tsW6i6oS2W5Ux1&count=" + sencount + "");
 							xhr.setRequestHeader("mob_no", "9723011190");
 							xhr.setRequestHeader("cache-control", "no-cache");
 							xhr.setRequestHeader("postman-token", "dcf21a20-ebd4-2dc0-0312-22cc13c4ef0f");
@@ -541,7 +541,7 @@ document.getElementById("addmissing")
     event.preventDefault();
     if (event.keyCode == 13) {
         document.getElementById("addmissing").click();
-        addmissing();
+        
         
     }
 });
@@ -555,7 +555,34 @@ function addmissing(){
     var missing_Age=document.getElementById("missing_Age").value ;
     var missing_gender=document.getElementById("missing_gender").value ;
     var missing_details=document.getElementById("missing_details").value ;
-    //var missing_photo=document.getElementById("missing_photo").value ;
+    var missing_photo=document.getElementById("upphoto").childNodes ;
+    var missinngsrc=[];
+    for (var key in missing_photo) {
+  if (missing_photo.hasOwnProperty(key)) {
+     missinngsrc[key] = missing_photo[key].src;
+    }
+    }
+
+var fd1 = new FormData(document.querySelector("addmissing"));
+fd1.append("misname", misname);    
+fd1.append("missingstatus", missingstatus);    
+fd1.append("contact_number", contact_number);    
+fd1.append("misdate", misdate);    
+fd1.append("missing_Age", missing_Age);    
+fd1.append("missing_gender", missing_gender);    
+fd1.append("missing_photo", missinngsrc);    
+var xhr = new XMLHttpRequest();
+    
+  xhr.open('POST', 'http://localhost/bcp/service/addmissing.php', true);
+    xhr.onload = function() {
+    if (this.status == 200) {
+      var resp = JSON.parse(this.response);
+      console.log('Server got:', resp);
+      
+    };
+  };
+  xhr.send(fd1);
+    
     
     
     
@@ -563,13 +590,14 @@ function addmissing(){
 
 document.querySelector('#missing_photo').addEventListener('change', function(e) {
   var file = this.files[0];
-  var fd = new FormData();
+  var fd = new FormData(document.querySelector("missing_photo"));
   fd.append("afile", file);
   // These extra params aren't necessary but show that you can include other data.
   fd.append("username", "Groucho");
   fd.append("accountnum", 123456);
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'handle_file_upload.php', true);
+    
+  xhr.open('POST', 'http://localhost/bcp/handle_file_upload.php', true);
   
   xhr.upload.onprogress = function(e) {
     if (e.lengthComputable) {
@@ -583,7 +611,7 @@ document.querySelector('#missing_photo').addEventListener('change', function(e) 
       console.log('Server got:', resp);
       var image = document.createElement('img');
       image.src = resp.dataUrl;
-      document.getElementById("upphoto").appendChild(image);
+     document.getElementById("upphoto").appendChild(image);
     };
   };
   xhr.send(fd);
