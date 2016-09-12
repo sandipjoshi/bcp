@@ -569,15 +569,16 @@ fd1.append("missingstatus", missingstatus);
 fd1.append("contact_number", contact_number);    
 fd1.append("misdate", misdate);    
 fd1.append("missing_Age", missing_Age);    
-fd1.append("missing_gender", missing_gender);    
+fd1.append("missing_gender", missing_gender); 
+fd1.append("missing_details", missing_details); 
 fd1.append("missing_photo", missinngsrc);    
 var xhr = new XMLHttpRequest();
     
   xhr.open('POST', 'http://localhost/bcp/service/addmissing.php', true);
     xhr.onload = function() {
     if (this.status == 200) {
-      var resp = JSON.parse(this.response);
-      console.log('Server got:', resp);
+      //var resp = JSON.parse(this.response);
+      console.log('Server got:', this.resoponseText);
       
     };
   };

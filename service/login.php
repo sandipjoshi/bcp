@@ -25,10 +25,7 @@ if (empty($count)) {
 	
 
 } else {
-	$string = '0123456789';
-	$string_shuffled = str_shuffle($string);
-	$otp = substr($string_shuffled, 1, 4);
-	
+		
 	if($passw==$count['User_pwd']){
 		
 	$_SESSION['userid']=$uid;

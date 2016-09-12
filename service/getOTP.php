@@ -1,4 +1,3 @@
-<script src="../js/jquery-1.11.3.min.js" type="text/javascript" ></script>
 <?php
 include "../backend/config.php";
 $key=$_GET['key'];
@@ -26,28 +25,28 @@ if (empty($count)) {
 	//echo $otp;
 	echo json_encode("OTP=".$otp);
 	
-   ?>
-<script>
-    var mobno = "<?php echo $mobile_no; ?>";
-    var otp = "<?php echo $otp; ?>";
-   $.ajax({     Origin: "http://silverlightinfosys.com",
-                type: "POST",
-                url: "http://mysms.silverlightinfosys.com/submitsms.jsp?user=devkey&key=212442b789XX&mobile=+91"+mobno+"&message=Your OTP for  Talash.Online is "+otp+"&senderid=INFOSM&accusage=1",
-                success: function(result) {
-                }
+    $curl = curl_init();
 
-            });
+    curl_setopt_array($curl, array(
+        CURLOPT_URL =>"http://mysms.silverlightinfosys.com/submitsms.jsp?user=devkey&key=212442b789XX&mobile=91$mobile_no&message=$otp&senderid=INFOSM&accusage=1",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_HTTPHEADER => array(
+        "cache-control: no-cache",
+        "postman-token: 8ae2283f-3521-bb82-ae85-1fcb4f66539c"
+  ),
+));
 
-</script>
+$response = curl_exec($curl);
+$err = curl_error($curl);
 
-<?php	
-
+curl_close($curl);
 } else {
-	$string = '0123456789';
-	$string_shuffled = str_shuffle($string);
-	$otp = substr($string_shuffled, 1, 4);
-	//echo $otp;
-	//echo json_encode($otp);
+	
 	echo json_encode($count['id']);
     
 }

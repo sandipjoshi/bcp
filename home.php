@@ -1,3 +1,8 @@
+<?php if (isset($_SESSION)) {
+    echo "session is set";
+    header('Location: dash.php');
+}
+    ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -158,10 +163,10 @@ document.getElementById(inid)
         	getlogin();
         }
         if(inid=="OTP"){
-        	login(userid);
+        	verify(userid);
         }
         if(inid=="pwd"){
-        	verify(userid);
+            login(userid);
         }
     }
 });
@@ -179,7 +184,7 @@ if (this.readyState === 4) {
 var resp = this.responseText;
 var n = resp.includes("OTP");
 
-if (n==true) {
+if (n===true) {
 var lhod = document.getElementById("login_header");
 lhod.innerHTML = "OTP";
 document.getElementById("mobileno").setAttribute("id", "OTP");
@@ -233,7 +238,8 @@ xhr.withCredentials = true;
 
 xhr.addEventListener("readystatechange", function () {
   if (this.readyState === 4) {
-    if(this.responseText=="True"){
+      var c = this.responseText.includes("True");
+    if(c === true){
     	alert("Please enter correct password");
     	    }
     else{
@@ -262,7 +268,7 @@ if(otp){
 	otp1=str.split("=",2)
 	console.log(otp1[1]);
 	if (otp==otp1[1]) {
-		alert("otp correct");
+		//alert("otp correct");
 		window.location.assign("dash.php");
 	}
 	else{
